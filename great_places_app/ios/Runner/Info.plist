@@ -18,6 +18,10 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Great Places need your permission to use gallery to be able to pick an image for place</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Great Places nned your permission to use camera to be able to take an image for place</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
