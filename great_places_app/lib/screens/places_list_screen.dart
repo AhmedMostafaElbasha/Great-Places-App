@@ -73,6 +73,7 @@ class PlacesListScreen extends StatelessWidget {
                                         greatPlaces.places[index].image),
                                   ),
                                   title: Text(greatPlaces.places[index].title),
+                                  subtitle: Text(greatPlaces.places[index].location.address),
                                 ),
                               ),
                             ),

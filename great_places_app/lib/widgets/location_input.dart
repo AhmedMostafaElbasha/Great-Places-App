@@ -7,6 +7,9 @@ import '../helpers/location_helper.dart';
 import '../screens/map_screen.dart';
 
 class LocationInput extends StatefulWidget {
+  final Function onSelectLocation;
+
+  LocationInput(this.onSelectLocation);
   @override
   _LocationInputState createState() => _LocationInputState();
 }
@@ -14,12 +17,10 @@ class LocationInput extends StatefulWidget {
 class _LocationInputState extends State<LocationInput> {
   String _imagePreviewUrl;
 
-  Future<void> _getCurrentUserLocation() async {
-    final locationData = await Location().getLocation();
-
+  void _showPreview({double latitude, double langitude}) {
     final staticMapImageUrl = LocationHelper.generateLocationPreviewImage(
-      latitude: locationData.latitude,
-      longitude: locationData.longitude,
+      latitude: latitude,
+      longitude: langitude,
     );
 
     setState(() {
@@ -27,18 +28,36 @@ class _LocationInputState extends State<LocationInput> {
     });
   }
 
+  Future<void> _getCurrentUserLocation() async {
+    try {
+      final locationData = await Location().getLocation();
+      _showPreview(
+          latitude: locationData.latitude, langitude: locationData.longitude);
+      widget.onSelectLocation(locationData.latitude, locationData.longitude);
+    } catch (e) {
+      return;
+    }
+  }
+
   Future<void> _selectOnMap(BuildContext context) async {
     final selectedLocation = await Navigator.of(context).push<LatLng>(
       MaterialPageRoute(
         fullscreenDialog: true,
-        builder: (context) => MapScreen(isSelecting: true,),
+        builder: (context) => MapScreen(
+          isSelecting: true,
+        ),
       ),
     );
-    if(selectedLocation == null) {
+    if (selectedLocation == null) {
       return;
     }
-    print(selectedLocation.latitude);
-    //...
+    try {
+      _showPreview(latitude: selectedLocation.latitude, langitude: selectedLocation.longitude);
+      widget.onSelectLocation(
+        selectedLocation.latitude, selectedLocation.longitude);
+    } catch (e) {
+      return;
+    }
   }
 
   @override
