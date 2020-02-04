@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:great_places_app/widgets/location_input.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/image_input.dart';
@@ -41,7 +42,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     }
     Provider.of<GreatPlaces>(context, listen: false)
         .addPlace(_placeNameController.text, _pickedImage);
-    Navigator.of(context).pop();    
+    Navigator.of(context).pop();
   }
 
   @override
@@ -69,6 +70,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       height: 15,
                     ),
                     ImageInput(_takeImage),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    LocationInput(),
                   ],
                 ),
               ),

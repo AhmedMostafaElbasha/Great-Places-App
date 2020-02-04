@@ -21,7 +21,13 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Great Places need your permission to use gallery to be able to pick an image for place</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Great Places nned your permission to use camera to be able to take an image for place</string>
+	<string>Great Places need your permission to use camera to be able to take an image for place</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Great Places need your permission to use GPS to be able to locate the place location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Great Places asks you to let it use GPS services permanently</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
