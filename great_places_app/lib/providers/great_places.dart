@@ -9,6 +9,10 @@ import '../helpers/location_helper.dart';
 class GreatPlaces with ChangeNotifier {
   List<Place> _places = [];
 
+  Place findById(String id) {
+    return _places.firstWhere((place) => place.id == id);
+  }
+
   List<Place> get places {
     return [..._places];
   }

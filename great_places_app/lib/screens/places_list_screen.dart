@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import './add_place_screen.dart';
 import '../providers/great_places.dart';
+import './place_details_screen.dart';
 
 class PlacesListScreen extends StatelessWidget {
   @override
@@ -56,28 +57,36 @@ class PlacesListScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                builder: (context, greatPlaces, child) =>
-                    greatPlaces.places.length <= 0
-                        ? child
-                        : Container(
-                            margin: EdgeInsets.only(top: 10, bottom: 10),
-                            child: ListView.builder(
-                              itemCount: greatPlaces.places.length,
-                              itemBuilder: (context, index) => Card(
-                                elevation: 6,
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 10),
-                                child: ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundImage: FileImage(
-                                        greatPlaces.places[index].image),
-                                  ),
-                                  title: Text(greatPlaces.places[index].title),
-                                  subtitle: Text(greatPlaces.places[index].location.address),
-                                ),
+                builder: (context, greatPlaces, child) => greatPlaces
+                            .places.length <=
+                        0
+                    ? child
+                    : Container(
+                        margin: EdgeInsets.only(top: 10, bottom: 10),
+                        child: ListView.builder(
+                          itemCount: greatPlaces.places.length,
+                          itemBuilder: (context, index) => Card(
+                            elevation: 6,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage:
+                                    FileImage(greatPlaces.places[index].image),
                               ),
+                              title: Text(greatPlaces.places[index].title),
+                              subtitle: Text(
+                                  greatPlaces.places[index].location.address),
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  PlaceDetailsScreen.routeName,
+                                  arguments: greatPlaces.places[index].id,
+                                );
+                              },
                             ),
                           ),
+                        ),
+                      ),
               ),
       ),
     );
